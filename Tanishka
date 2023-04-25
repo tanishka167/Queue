@@ -1,0 +1,108 @@
+class MyQueue {
+    int []arr;
+    int front =0;
+    int rear=0;
+    int size=200;
+
+    public MyQueue() {
+        arr=new int[size];
+    }
+    
+    public void push(int x) {
+        if(rear==200){
+            return;
+        }
+        arr[rear]=x;
+        rear++;
+    }
+    
+    public int pop() {
+        int x;
+        if(!empty()){
+            x=arr[front];
+            front++;
+            return x;
+        }
+        return 0;
+    }
+    
+    public int peek() {
+        if(empty());
+        return arr[front];
+    }
+    
+    public boolean empty() {
+        if(front==rear){
+            front=0;
+            rear=0;
+            return true;
+        }
+        return false;
+    }
+}
+
+
+
+class MyCircularQueue{
+
+        private int arr[];
+        private int front;
+        private int rear;
+        private int k;
+        public MyCircularQueue(int k){
+            arr= new int[k];
+            this.k=k;
+            front=-1;
+            rear=-1;
+        }
+
+        public boolean enQueue(int value) {
+        if(isFull()){
+            return false;
+        }
+        if(front==-1){
+            front=0;
+        }
+        rear= (rear+1)%k;
+        arr[rear]= value;
+        return true;
+    }
+    
+    public boolean deQueue() {
+        if(isEmpty()){
+            return false;
+        }
+        if(front==rear){
+            front=rear=-1;
+        }
+        else{
+            front= (front+1)%k;
+        }
+        return true;
+    }
+    
+    public int Front() {
+        if(isEmpty()){
+            return -1;
+        }
+        return arr[front];
+    }
+    
+    public int Rear() {
+        if(isEmpty()){
+            return -1;
+        }
+        return arr[rear];
+    }
+    
+    public boolean isEmpty() {
+        return front==-1 && rear==-1;
+    }
+    
+    public boolean isFull() {
+        if(front== (rear+1)%k){
+            return true;
+        }
+        return false;
+    }
+}
